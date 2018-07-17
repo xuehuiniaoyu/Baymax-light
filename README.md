@@ -21,7 +21,7 @@ allprojects {
 
 dependencies {
 	...
-	compile 'com.github.xuehuiniaoyu:Baymax-1.0:[Latest release]'
+	implementation 'com.github.xuehuiniaoyu:Baymax-light:v1.2'
 }
 
 ```
