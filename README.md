@@ -91,9 +91,10 @@ public class TestController {
      * 访问百度
      * @param correspondents
      */
-    @Tag_Controller.Path(name = "getBaidyContent")
+    @Tag_Controller.Path(name = "getBaidyContent", value="/hello")
     @Tag_Http
     public void baidu(Correspondents correspondents, final TextView textView) {
+    	Log.i(TAG, "请求地址为："+correspondents.getUri());
         correspondents.setExpectation(new HttpExpectation() {
             @Override
             public void onRepay(HttpRepay repay) {
