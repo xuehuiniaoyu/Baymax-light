@@ -67,7 +67,7 @@ public class ExampleApplication extends BaymaxApplication {
 2. Example Activity
 
 @Tag_Activity(name = "test-activity")
-public class TestActivity extends BaymaxCompatActivity {
+public class TestActivity extends BaymaxActivity {
 	...
 }
 
