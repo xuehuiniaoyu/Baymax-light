@@ -5,6 +5,7 @@ Android平台的Spring框架。
 Controller概念的引入，框架已实现网络层封装，你不再需要关心网络数据的请求实现，只需关心业务如何处理。
 
 The Spring framework of Android platform.
+
 can be used.The introduction of the Controller concept makes the whole framework much easier.
 
 ## Gradle
