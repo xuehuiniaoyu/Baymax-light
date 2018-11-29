@@ -90,7 +90,7 @@ public class MainActivity extends BaymaxCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.testStartActivity: {
-                Baymax.single().activity("test-activity").start();
+                Baymax.single().activity("test-activity").start("name=1111", "age=(int)25", "intArr=(int[])45, 66, 101", "stringArr=(string[])  hello,aaa");
                 break;
             }
             case R.id.testStartActivityResult: {

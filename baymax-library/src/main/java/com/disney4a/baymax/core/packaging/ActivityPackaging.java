@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.disney4a.baymax.core.app.application.Baymax;
+import com.disney4a.baymax.utils.Utils;
 
 /**
  * Created by Administrator on 2017/8/15 0015.
@@ -52,13 +53,15 @@ public class ActivityPackaging {
         Context context = Baymax.single().getContext();
         Intent intent = new Intent(context, activity);
         intent.putExtras(bundle);
-        Context cxt = null;
-        try {
-            cxt = context.createPackageContext(context.getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        cxt.startActivity(intent);
+        context.startActivity(intent);
+    }
+
+    public void start(Utils.KeyValue ... keyValues) {
+        Utils.startActivity(Baymax.single().getContext(), activity, keyValues);
+    }
+
+    public void start(String ... keyValues) {
+        Utils.startActivity(Baymax.single().getContext(), activity, keyValues);
     }
 }

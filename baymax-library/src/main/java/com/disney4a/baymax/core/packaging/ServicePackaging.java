@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.disney4a.baymax.core.app.application.Baymax;
+import com.disney4a.baymax.utils.Utils;
 
 /**
  * Created by Administrator on 2017/8/15 0015.
@@ -51,12 +52,14 @@ public class ServicePackaging {
         Context context = Baymax.single().getContext();
         Intent intent = new Intent(context, service);
         intent.putExtras(bundle);
-        Context cxt = null;
-        try {
-            cxt = context.createPackageContext(context.getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        cxt.startService(intent);
+        context.startService(intent);
+    }
+
+    public void start(Utils.KeyValue ... keyValues) {
+        Utils.startService(Baymax.single().getContext(), service, keyValues);
+    }
+
+    public void start(String ... keyValues) {
+        Utils.startService(Baymax.single().getContext(), service, keyValues);
     }
 }

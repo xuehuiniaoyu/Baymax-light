@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -207,11 +209,22 @@ public class ViewSelector {
         try {
             result = method.invoke(annotationsFrom, objects);
         } catch (IllegalAccessException e) {
-            Log.e(TAG, "方法 "+method.getName()+ " 执行错误 "+e.getLocalizedMessage());
+            Log.e(TAG, "方法 "+method.getName()+ " 执行错误 "+allError(e));
         } catch (InvocationTargetException e) {
-            Log.e(TAG, "方法 "+method.getName()+ " 执行错误 "+e.getLocalizedMessage());
+            Log.e(TAG, "方法 "+method.getName()+ " 执行错误 "+allError(e));
         } finally {
             return result;
+        }
+    }
+
+    String allError(Throwable t) {
+        try {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            t.printStackTrace(pw);
+            return "\r\n" + sw.toString() + "\r\n";
+        } catch (Throwable t1) {
+            return t.toString();
         }
     }
 

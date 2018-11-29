@@ -1,8 +1,9 @@
 # Baymax
-Android平台的Spring框架，利用Hook技术实现Android三大组件免清单注册即可使用。
-Controller概念的引入让整个框架变得好用了很多。
+Android平台的Spring框架。
+一个别名对应一个组件，可以根据需求的变化将别名对应的组件临时替换，非常实用有实际项目的开发。
+Controller概念的引入，框架已实现网络层封装，你不再需要关心网络数据的请求实现，只需关心业务如何处理。
 
-The Spring framework of Android platform, using Hook technology to implement the three Android components of Android, 
+The Spring framework of Android platform.
 can be used.The introduction of the Controller concept makes the whole framework much easier.
 
 ## Gradle
@@ -21,7 +22,7 @@ allprojects {
 
 dependencies {
 	...
-	compile 'com.github.xuehuiniaoyu:Baymax-1.0:[Latest release]'
+	implementation 'com.github.xuehuiniaoyu:Baymax-light:v1.2'
 }
 
 ```
@@ -137,8 +138,3 @@ correspondents参数为自动创建，只要通过Path注解的方法都必须�
 
 
 Please follow this example
-
-
-新增修改：
-
-不再通过 intent.putExtra(Baymax.IntentConfig.NATIVE_FLAG, true); 来区分外部类。系统Intent直接使用，不再被限制。

@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.disney4a.baymax.annotations.Tag_Activity;
 import com.disney4a.baymax.core.app.activity.BaymaxCompatActivity;
 
+import java.util.Arrays;
+
 /**
  * Created by Administrator on 2017/8/24 0024.
  */
@@ -17,7 +19,10 @@ public class TestActivity extends BaymaxCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TextView textView = new TextView(this);
-        textView.setText("测试Activity");
+        textView.setText("测试Activity " + getIntent().getStringExtra("name")+" --- "+getIntent().getIntExtra("age", 0) + "  ---- "+ Arrays.asList(getIntent().getIntArrayExtra("intArr") )
+
+
+                + "  ---- "+ Arrays.asList(getIntent().getStringArrayExtra("stringArr") ));
         setContentView(textView);
     }
 }
