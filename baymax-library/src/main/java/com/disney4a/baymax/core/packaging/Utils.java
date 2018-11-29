@@ -1,42 +1,16 @@
-package com.disney4a.baymax.utils;
+package com.disney4a.baymax.core.packaging;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.ArrayMap;
 
+import com.disney4a.baymax.core.params.KeyValue;
 import com.disney4a.baymax.utils.Reflect;
 
 import java.util.HashMap;
 
-public class Utils {
-    public static class KeyValue {
-        private String key;
-        private Object value;
-
-        public KeyValue(String key, Object value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public void setKey(String key) {
-            this.key = key;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public void setValue(Object value) {
-            this.value = value;
-        }
-    }
-
-
+class Utils {
     interface Convert {
         Object convert(String value);
     }

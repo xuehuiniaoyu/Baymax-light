@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.disney4a.baymax.core.app.application.Baymax;
-import com.disney4a.baymax.utils.Utils;
+import com.disney4a.baymax.core.params.KeyValue;
 
 /**
  * Created by Administrator on 2017/8/15 0015.
@@ -57,7 +57,7 @@ public class ActivityPackaging {
         context.startActivity(intent);
     }
 
-    public void start(Utils.KeyValue ... keyValues) {
+    public void start(KeyValue... keyValues) {
         Utils.startActivity(Baymax.single().getContext(), activity, keyValues);
     }
 

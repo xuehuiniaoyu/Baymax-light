@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.disney4a.baymax.annotations.Tag_Activity;
 import com.disney4a.baymax.core.app.activity.BaymaxCompatActivity;
 import com.disney4a.baymax.core.app.application.Baymax;
+import com.disney4a.baymax.core.params.KeyValue;
 import com.disney4a.baymax.utils.ViewSelector;
 import com.disney4a.baymax_example.R;
 import com.disney4a.baymax_example.app.utils.PackageUtil;
@@ -91,7 +92,9 @@ public class MainActivity extends BaymaxCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.testStartActivity: {
-                Baymax.single().activity("test-activity").start("name=1111", "age=(int)25", "intArr=(int[])45, 66, 101", "stringArr=(string[])  hello,aaa");
+                Baymax.single().activity("test-activity").start(new KeyValue("name", "1111"), new KeyValue("age", 25), new KeyValue("intArr", new int[]{45, 66, 101})
+                        , new KeyValue("stringArr", new String[]{"  hello","aaa"}));
+//                Baymax.single().activity("test-activity").start("name=1111", "age=(int)25", "intArr=(int[])45, 66, 101", "stringArr=(string[])  hello,aaa");
                 break;
             }
             case R.id.testStartActivityResult: {

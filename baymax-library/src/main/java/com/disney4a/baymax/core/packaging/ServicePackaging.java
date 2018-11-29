@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.disney4a.baymax.core.app.application.Baymax;
-import com.disney4a.baymax.utils.Utils;
 
 /**
  * Created by Administrator on 2017/8/15 0015.
