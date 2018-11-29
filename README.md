@@ -146,7 +146,7 @@ Please follow this example
 ```
 Baymax.single().activity("test-activity").start("name=1111", "age=(int)25", "intArr=(int[])45, 66, 101", "stringArr=(string[])  hello,aaa");
 
-Baymax.single().activity("test-activity").start(new Utils.KeyValue("name", "1111"), new Utils.KeyValue("age", 25), new Utils.KeyValue("intArr", new int[]{45, 66, 101})
-                        , new Utils.KeyValue("stringArr", new String[]{"  hello","aaa"}));
+Baymax.single().activity("test-activity").start(new KeyValue("name", "1111"), new KeyValue("age", 25), new KeyValue("intArr", new int[]{45, 66, 101})
+                        , new KeyValue("stringArr", new String[]{"  hello","aaa"}));
 
 ```
