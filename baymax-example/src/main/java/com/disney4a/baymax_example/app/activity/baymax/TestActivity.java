@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 @Tag_Activity(name = "test-activity")
 public class TestActivity extends BaymaxCompatActivity{
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

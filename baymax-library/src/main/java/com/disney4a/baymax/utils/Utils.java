@@ -10,7 +10,6 @@ import com.disney4a.baymax.utils.Reflect;
 import java.util.HashMap;
 
 public class Utils {
-
     public static class KeyValue {
         private String key;
         private Object value;

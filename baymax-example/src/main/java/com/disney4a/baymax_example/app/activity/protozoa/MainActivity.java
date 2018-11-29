@@ -25,6 +25,7 @@ import java.util.Timer;
 
 @Tag_Activity(name = "main")
 public class MainActivity extends BaymaxCompatActivity {
+
     @ViewSelector.GetViewById(R.id.textView)
     private AppCompatTextView textView;
 
