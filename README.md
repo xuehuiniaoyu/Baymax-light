@@ -1,8 +1,15 @@
 # Baymax
 Android平台的Spring框架。
+<<<<<<< HEAD
 一个别名对应一个组件，可以根据需求的变化将别名对应的组件临时替换，非常实用有实际项目的开发。
 Controller概念的引入，框架已实现网络层封装，你不再需要关心网络数据的请求实现，只需关心业务如何处理。
 
+=======
+
+一个别名对应一个组件，可以根据需求的变化将别名对应的组件临时替换，非常实用于实际项目的开发。
+Controller概念的引入，框架已实现网络层封装，你不再需要关心网络数据的请求实现，只需关心业务如何处理。
+
+>>>>>>> b55b92ff110d8973e6e281e6625f1e29dfdc55c9
 The Spring framework of Android platform.
 can be used.The introduction of the Controller concept makes the whole framework much easier.
 
@@ -66,7 +73,7 @@ public class ExampleApplication extends BaymaxApplication {
 2. Example Activity
 
 @Tag_Activity(name = "test-activity")
-public class TestActivity extends BaymaxCompatActivity {
+public class TestActivity extends BaymaxActivity {
 	...
 }
 
@@ -90,9 +97,10 @@ public class TestController {
      * 访问百度
      * @param correspondents
      */
-    @Tag_Controller.Path(name = "getBaidyContent")
+    @Tag_Controller.Path(name = "getBaidyContent", value="/hello")
     @Tag_Http
     public void baidu(Correspondents correspondents, final TextView textView) {
+    	Log.i(TAG, "请求地址为："+correspondents.getUri());
         correspondents.setExpectation(new HttpExpectation() {
             @Override
             public void onRepay(HttpRepay repay) {
@@ -137,4 +145,8 @@ correspondents参数为自动创建，只要通过Path注解的方法都必须�
 
 
 
+<<<<<<< HEAD
 Please follow this example
+=======
+Please follow this example
+>>>>>>> b55b92ff110d8973e6e281e6625f1e29dfdc55c9
