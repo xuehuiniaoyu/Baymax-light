@@ -45,17 +45,21 @@ public class BaymaxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        init();
     }
 
     @Override
     protected void attachBaseContext(Context base) {
-        Baymax.initialize(base);
+        super.attachBaseContext(base);
+    }
+
+    void init() {
+        Baymax.initialize(this);
         // 先检查是否有注解
         Tag_Application application = this.getClass().getAnnotation(Tag_Application.class);
         if(application != null) {
             String[] annotationsPackages = application.annotationsPackages();
             Baymax.single().setAnnotationsPackage(annotationsPackages).play();
         }
-        super.attachBaseContext(base);
     }
 }
