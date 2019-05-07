@@ -23,7 +23,7 @@ allprojects {
 
 dependencies {
 	...
-	implementation 'com.github.xuehuiniaoyu:Baymax-light:v1.2'
+	implementation 'com.github.xuehuiniaoyu:Baymax-light:v2.0'
 }
 
 ```
