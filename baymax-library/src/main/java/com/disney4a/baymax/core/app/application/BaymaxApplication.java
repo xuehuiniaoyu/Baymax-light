@@ -1,7 +1,7 @@
 package com.disney4a.baymax.core.app.application;
 
 import android.app.Application;
-import android.content.Context;
+import android.support.annotation.CallSuper;
 
 import com.disney4a.baymax.annotations.Tag_Application;
 
@@ -42,20 +42,15 @@ import com.disney4a.baymax.annotations.Tag_Application;
  */
 
 public class BaymaxApplication extends Application {
-    @Override
+    @Override @CallSuper
     public void onCreate() {
         super.onCreate();
-		Baymax.initialize(base);
+		Baymax.initialize(this);
         // 先检查是否有注解
         Tag_Application application = this.getClass().getAnnotation(Tag_Application.class);
         if(application != null) {
             String[] annotationsPackages = application.annotationsPackages();
             Baymax.single().setAnnotationsPackage(annotationsPackages).play();
         }
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
     }
 }

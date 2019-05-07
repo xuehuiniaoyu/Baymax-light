@@ -54,7 +54,7 @@ public class Baymax {
      * 初始化
      * @param context
      */
-    final static Baymax initialize(Context context) {
+    public final static Baymax initialize(Context context) {
         singleInstance = new Baymax();
         singleInstance.context = context;
         return singleInstance;
@@ -80,7 +80,7 @@ public class Baymax {
     /**
      * 開始
      */
-    final void play() {
+    public final void play() {
         // 是否重复执行play()方法
         if(played)  {
             throw new RuntimeException("You can't play multiple times!");

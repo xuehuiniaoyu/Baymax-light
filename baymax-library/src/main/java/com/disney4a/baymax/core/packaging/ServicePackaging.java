@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.disney4a.baymax.core.app.application.Baymax;
+import com.disney4a.baymax.core.params.KeyValue;
 
 /**
  * Created by Administrator on 2017/8/15 0015.
@@ -54,7 +55,7 @@ public class ServicePackaging {
         context.startService(intent);
     }
 
-    public void start(Utils.KeyValue ... keyValues) {
+    public void start(KeyValue... keyValues) {
         Utils.startService(Baymax.single().getContext(), service, keyValues);
     }
 
