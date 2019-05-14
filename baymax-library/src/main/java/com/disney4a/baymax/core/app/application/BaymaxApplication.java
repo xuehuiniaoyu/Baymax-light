@@ -50,7 +50,7 @@ public class BaymaxApplication extends Application {
         Tag_Application application = this.getClass().getAnnotation(Tag_Application.class);
         if(application != null) {
             String[] annotationsPackages = application.annotationsPackages();
-            Baymax.single().setAnnotationsPackage(annotationsPackages).play();
+            Baymax.single().setAnnotationsPackage(annotationsPackages);//.play();
         }
     }
 }

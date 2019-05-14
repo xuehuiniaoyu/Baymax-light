@@ -38,10 +38,42 @@ import java.util.List;
  */
 
 public class Baymax {
-    private HashMap<String, ActivityPackaging> activityPackagingHashMap = new HashMap<>();
-    private HashMap<String, ServicePackaging> servicePackagingHashMap = new HashMap<>();
-    private HashMap<String, ProviderPackaging> providerPackagingHashMap = new HashMap<>();
-    private HashMap<String, ControllerPackaging> controllerPackagingHashMap = new HashMap<>();
+    private HashMap<String, ActivityPackaging> activityPackagingHashMap = new HashMap<String, ActivityPackaging>() {
+        @Override
+        public ActivityPackaging get(Object key) {
+            if(!played) {
+                play();
+            }
+            return super.get(key);
+        }
+    };
+    private HashMap<String, ServicePackaging> servicePackagingHashMap = new HashMap<String, ServicePackaging>() {
+        @Override
+        public ServicePackaging get(Object key) {
+            if(!played) {
+                play();
+            }
+            return super.get(key);
+        }
+    };
+    private HashMap<String, ProviderPackaging> providerPackagingHashMap = new HashMap<String, ProviderPackaging>() {
+        @Override
+        public ProviderPackaging get(Object key) {
+            if(!played) {
+                play();
+            }
+            return super.get(key);
+        }
+    };
+    private HashMap<String, ControllerPackaging> controllerPackagingHashMap = new HashMap<String, ControllerPackaging>() {
+        @Override
+        public ControllerPackaging get(Object key) {
+            if(!played) {
+                play();
+            }
+            return super.get(key);
+        }
+    };
     private Context context;
     private Baymax() {}
 
