@@ -1,6 +1,8 @@
 package com.disney4a.baymax.core.app.application;
 
 import android.app.Application;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.CallSuper;
 
 import com.disney4a.baymax.annotations.Tag_Application;
@@ -42,15 +44,84 @@ import com.disney4a.baymax.annotations.Tag_Application;
  */
 
 public class BaymaxApplication extends Application {
+    private Handler mHandler;
+    private InitInnerTask mTask;
+
+    /**
+     * 初始化任务
+     */
+    public static abstract class InitInnerTask {
+        private boolean initBool;
+        /**
+         * 当程序一步加载完成以后执行
+         */
+        public abstract void onInited();
+
+        private final void taskInit(Object target) {
+            if(!initBool) {
+                // 先检查是否有注解
+                Tag_Application application = target.getClass().getAnnotation(Tag_Application.class);
+                if (application != null) {
+                    String[] annotationsPackages = application.annotationsPackages();
+                    Baymax.single().setAnnotationsPackage(annotationsPackages);//.play();
+                }
+                initBool = true;
+            }
+        }
+    }
+
     @Override @CallSuper
     public void onCreate() {
         super.onCreate();
 		Baymax.initialize(this);
-        // 先检查是否有注解
-        Tag_Application application = this.getClass().getAnnotation(Tag_Application.class);
-        if(application != null) {
-            String[] annotationsPackages = application.annotationsPackages();
-            Baymax.single().setAnnotationsPackage(annotationsPackages);//.play();
+    }
+
+    /**
+     * 初始化方法
+     */
+    public final void init() {
+        if(mTask != null) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.CUPCAKE) {
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        // 异步执行
+                        mTask.taskInit(BaymaxApplication.this);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        mTask.onInited();
+                    }
+                }.execute();
+            } else {
+                mHandler = new Handler();
+                final Runnable taskRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        mHandler.removeCallbacks(this);
+                        mTask.onInited();
+                    }
+                };
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 异步执行
+                        mTask.taskInit(BaymaxApplication.this);
+                        mHandler.post(taskRunnable);
+                    }
+                }).start();
+            }
         }
+    }
+
+    /**
+     * 外部指定任务
+     * @param task
+     */
+    public BaymaxApplication setInitInnerTask(InitInnerTask task) {
+        this.mTask = task;
+        return this;
     }
 }

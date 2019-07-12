@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.disney4a.baymax.core.app.activity.BaymaxActivity;
+import com.disney4a.baymax.core.app.application.BaymaxApplication;
 import com.disney4a.baymax.utils.ViewSelector;
 import com.disney4a.baymax_example.R;
 
@@ -28,28 +29,36 @@ public class WelcomeActivity extends BaymaxActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_layout);
-        mTimer = new Timer("loading...");
-        mTimer.schedule(new TimerTask() {
+
+        BaymaxApplication application = (BaymaxApplication) getApplication();
+        application.setInitInnerTask(new BaymaxApplication.InitInnerTask() {
             @Override
-            public void run() {
-                if(num == MAX_NUM) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            jump2Main();
+            public void onInited() {
+                mTimer = new Timer("loading...");
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if(num == MAX_NUM) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    jump2Main();
+                                }
+                            });
                         }
-                    });
-                }
-                else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            timerText.setText("还有 "+(MAX_NUM-(num++))+" 秒进入");
+                        else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    timerText.setText("还有 "+(MAX_NUM-(num++))+" 秒进入");
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+                }, 0, 1000);
             }
-        }, 0, 1000);
+        }).init();
+
     }
 
     void jump2Main() {
